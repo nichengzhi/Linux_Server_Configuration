@@ -8,9 +8,12 @@ implement a apache2 server on AWS lightsail ubutunu instance.
 
 ### step
 
-1. update packages in linux server:
+1. update packages in linux server and disable root login:
 	- sudo apt-get update
 	- sudo apt-get upgrade
+	- sudo apt-get dist-upgrade
+	- sudo vim /etc/ssh/sshd_config
+	- change PermitRootLogin withou-pasword to no
 2. create a user called grader:
 	- sudo adduser grader
 	- sudo vim /etc/sudoers.d/grader
@@ -91,7 +94,7 @@ implement a apache2 server on AWS lightsail ubutunu instance.
 	- sudo apt-get install postgresql
 	- sudo -u postgres psql
 	- create user called catalog in psql command line and create a database called catalog
-	- CREATE USER catalog WITH PASSWORD 'catalog';
+	- CREATE USER catalog WITH PASSWORD 'password';
 	- CREATE DATABASE catalog WITH OWNER catalog;
 	change the database path in database_setup.py additems.py __init__.py to postgresql://catalog:catalog@localhost/catalog
 	- create table and ingest data by run database_setup.py and additems.py
